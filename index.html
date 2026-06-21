@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Kai Feng - robotics and 3D vision postgraduate building reproducible ROS2 SLAM and perception infrastructure for RGB-D and LiDAR-Inertial-Camera robots."
+    >
+    <title>Kai Feng</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home">Kai Feng</a>
+      <nav aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="page" id="home">
+      <section class="profile">
+        <div class="identity" aria-label="Profile summary">
+          <h1>Kai Feng</h1>
+          <p class="role">ME Postgraduate, The University of Hong Kong</p>
+          <p class="lead">
+            I build reproducible ROS2 SLAM and perception infrastructure for
+            RGB-D and LiDAR-Inertial-Camera robots, with current work on
+            ORB-SLAM3 wheel fusion and Gaussian-SLAM reproduction.
+          </p>
+          <div class="links">
+            <a href="https://github.com/KaiFeng-Frank" rel="me">GitHub</a>
+            <a href="https://www.linkedin.com/in/%E5%87%AF-%E5%86%AF-267472156/" rel="me">LinkedIn</a>
+          </div>
+        </div>
+        <div class="bio">
+          <p>
+            My work turns research SLAM code into ROS2 components that mapping
+            and planning modules can swap, validate, and debug. I care about
+            interface contracts, trajectory evidence, and failure signals, not
+            only whether a demo runs once.
+          </p>
+          <p>
+            I am interested in research collaboration around ground/mobile robot
+            localization, active mapping, continuous-time odometry, and
+            reproducible robotics systems.
+          </p>
+        </div>
+      </section>
+
+      <section class="section compact" id="research">
+        <h2>Research Focus</h2>
+        <ul class="plain-list">
+          <li>Swappable localization backends for active mapping systems</li>
+          <li>ORB-SLAM3 RGB-D localization with wheel-odometry fusion</li>
+          <li>Continuous-time LiDAR-Inertial-Camera odometry on ROS2 Jazzy</li>
+          <li>Gaussian-SLAM reproduction, validation, and render-feedback studies</li>
+        </ul>
+      </section>
+
+      <section class="section" id="projects">
+        <h2>Selected Projects</h2>
+
+        <article class="project">
+          <h3>
+            <a href="https://github.com/KaiFeng-Frank/orbslam3-wheel-ros2">ORB-SLAM3 Wheel ROS2</a>
+          </h3>
+          <p class="meta">ROS2 Jazzy, ORB-SLAM3, GTSAM, wheel odometry</p>
+          <dl class="project-facts">
+            <dt>Problem</dt>
+            <dd>Make ORB-SLAM3 usable as a replaceable ROS2 localization backend for active mapping and planning.</dd>
+            <dt>Contribution</dt>
+            <dd>Links against unmodified <code>libORB_SLAM3.so</code>, adds GTSAM fixed-lag wheel/visual smoothing, and publishes odometry, keyframes, camera intrinsics, and reliability topics.</dd>
+            <dt>Evidence</dt>
+            <dd>Official ORB-SLAM3 front-end reproduces TUM <code>fr1_xyz</code> ATE <code>0.0102 m</code>; the ROS2 node measures <code>0.0129 m</code> end-to-end.</dd>
+            <dt>Code</dt>
+            <dd><a href="https://github.com/KaiFeng-Frank/orbslam3-wheel-ros2">Repository</a></dd>
+          </dl>
+        </article>
+
+        <article class="project">
+          <h3>
+            <a href="https://github.com/KaiFeng-Frank/cocolic_ros2_jazzy">Coco-LIC ROS2 Jazzy</a>
+          </h3>
+          <p class="meta">ROS2 Jazzy, continuous-time odometry, rosbag2</p>
+          <dl class="project-facts">
+            <dt>Problem</dt>
+            <dd>Port a ROS1/catkin continuous-time LIC odometry system to ROS2 Jazzy without losing timing and bag replay semantics.</dd>
+            <dt>Contribution</dt>
+            <dd>Provides a ROS2 workspace with Ceres 2.2 compatibility, rosbag2 input, per-point LiDAR timing support, and validation packaging.</dd>
+            <dt>Evidence</dt>
+            <dd>FAST-LIVO2 <code>CBD_Building_01</code> validation reports <code>2.12 cm</code> LIO and <code>2.27 cm</code> LICO ATE RMSE over <code>1231 / 1231</code> matched poses.</dd>
+            <dt>Code</dt>
+            <dd>
+              <a href="https://github.com/KaiFeng-Frank/cocolic_ros2_jazzy">Repository</a> ·
+              <a href="https://github.com/KaiFeng-Frank/cocolic_ros2_jazzy/blob/main/docs/VALIDATION.md">Validation</a>
+            </dd>
+          </dl>
+        </article>
+
+        <article class="project">
+          <h3>
+            <a href="https://github.com/KaiFeng-Frank/gaussian_lic_ros2">Gaussian-LIC ROS2</a>
+          </h3>
+          <p class="meta">ROS2 Jazzy, LiDAR-Inertial-Camera SLAM, Gaussian mapping infrastructure</p>
+          <dl class="project-facts">
+            <dt>Problem</dt>
+            <dd>Turn a large LIC + Gaussian mapping research stack into a ROS2 checkpoint with explicit reproduction boundaries.</dd>
+            <dt>Contribution</dt>
+            <dd>Packages middleware contracts, continuous-time tracking surfaces, CUDA/Torch Gaussian mapping, dataset profiles, and audit scripts in one ROS2 Jazzy workspace.</dd>
+            <dt>Evidence</dt>
+            <dd>Public reports cover FAST-LIVO, FAST-LIVO2, M2DGR, MCD, and R3LIVE; GL2 results include CBD full-sequence tracking and PSNR/ATE ablations.</dd>
+            <dt>Code</dt>
+            <dd>
+              <a href="https://github.com/KaiFeng-Frank/gaussian_lic_ros2">Repository</a> ·
+              <a href="https://github.com/KaiFeng-Frank/gaussian_lic_ros2/blob/main/docs/GL2_RESULTS.md">GL2 results</a> ·
+              <a href="https://github.com/KaiFeng-Frank/gaussian_lic_ros2/blob/main/results/strict_parity_matrix.md">Matrix</a>
+            </dd>
+          </dl>
+        </article>
+
+        <article class="project">
+          <h3>
+            <a href="https://github.com/KaiFeng-Frank/autonomous-logistics-robot">Autonomous Logistics Robot</a>
+          </h3>
+          <p class="meta">Raspberry Pi 5, ESP32-S3, ROS2, Nav2, QR vision</p>
+          <dl class="project-facts">
+            <dt>Problem</dt>
+            <dd>Build an indoor delivery robot that ties navigation, perception, motor control, and payload handling into one ROS2 system.</dd>
+            <dt>Contribution</dt>
+            <dd>Integrates Raspberry Pi 5, ESP32-S3 micro-ROS motor control, Nav2, QR perception, mecanum drive, and a lift mechanism.</dd>
+            <dt>Evidence</dt>
+            <dd>Documents the full stack boundary from embedded control through ROS2 navigation and task-level logistics behavior.</dd>
+            <dt>Code</dt>
+            <dd><a href="https://github.com/KaiFeng-Frank/autonomous-logistics-robot">Repository</a></dd>
+          </dl>
+        </article>
+      </section>
+
+      <section class="section compact" id="contact">
+        <h2>Contact</h2>
+        <p>
+          For project discussion or collaboration, reach me through
+          <a href="https://github.com/KaiFeng-Frank" rel="me">GitHub</a> or
+          <a href="https://www.linkedin.com/in/%E5%87%AF-%E5%86%AF-267472156/" rel="me">LinkedIn</a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
